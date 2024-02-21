@@ -26,7 +26,10 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign In"),
+        title: Text(
+          "Sign In",
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
       ),
       body: SafeArea(
         child: SizedBox(
@@ -45,10 +48,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Text(
-                    "Sign in with your email and password  \nor continue with social media",
-                    textAlign: TextAlign.center,
-                  ),
+                  // const Text(
+                  //   "Sign in with your email and password  \nor continue with social media",
+                  //   textAlign: TextAlign.center,
+                  // ),
                   SizedBox(height: MediaQuery.of(context).size.height / 50),
                   const SignForm(),
                   SizedBox(height: MediaQuery.of(context).size.height / 50),

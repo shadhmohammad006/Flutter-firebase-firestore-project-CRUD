@@ -23,13 +23,9 @@ class _OrderScreenState extends State<OrderScreen> {
     final providerObj = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          children: [
-            const Text(
-              "Orders",
-              style: TextStyle(color: Colors.black),
-            ),
-          ],
+        title: Text(
+          "order",
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: StreamBuilder(

@@ -53,7 +53,7 @@ class _SignFormState extends State<SignForm> {
           TextFormField(
             controller: getx.loginemailAddress,
             keyboardType: TextInputType.emailAddress,
-            obscureText: true,
+            // obscureText: true,
             onSaved: (newValue) => email = newValue,
             onChanged: (value) {
               if (value.isNotEmpty) {
@@ -164,7 +164,7 @@ class _SignFormState extends State<SignForm> {
                   ? CircularProgressIndicator(
                       color: Colors.white,
                     )
-                  : Text("Continue"))
+                  : Text("Sign In"))
         ],
       ),
     );

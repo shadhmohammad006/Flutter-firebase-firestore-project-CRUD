@@ -14,7 +14,7 @@ class ProductsScreen extends StatefulWidget {
     this.product,
   }) : super(key: key);
 
-  static String routeName = "/products";
+  // static String routeName = "/products";
   Product? product;
 
   @override
@@ -44,7 +44,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Products"),
+        title: Text(
+          "Products",
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
       ),
       body: SafeArea(
         child: isLoading

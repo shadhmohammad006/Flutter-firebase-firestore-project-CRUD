@@ -28,10 +28,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  "Please enter your email and we will send \nyou a link to return to your account",
-                  textAlign: TextAlign.center,
-                ),
+                // Text(
+                //   "Please enter your email and we will send \nyou a link to return to your account",
+                //   textAlign: TextAlign.center,
+                // ),
                 SizedBox(height: MediaQuery.of(context).size.height / 25),
                 ForgotPassForm(),
               ],

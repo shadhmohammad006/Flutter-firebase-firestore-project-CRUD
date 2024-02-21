@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/init_screen.dart';
 
 class LoginSuccessScreen extends StatelessWidget {
-  static String routeName = "/login_success";
+  // static String routeName = "/login_success";
 
   const LoginSuccessScreen({super.key});
   @override
@@ -10,18 +10,17 @@ class LoginSuccessScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const SizedBox(),
-        title: const Text("Login Success"),
       ),
       body: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height / 50),
           Image.asset(
-            "assets/images/success.png",
+            "assets/images/login photo.png",
             height: MediaQuery.of(context).size.height * 0.4, //40%
           ),
           SizedBox(height: MediaQuery.of(context).size.height / 50),
           const Text(
-            "Login Success",
+            " Successfully Completed",
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
@@ -33,7 +32,9 @@ class LoginSuccessScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, InitScreen.routeName);
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => InitScreen()),
+                );
               },
               child: const Text("Back to home"),
             ),

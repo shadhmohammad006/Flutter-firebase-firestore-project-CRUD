@@ -4,6 +4,7 @@ import 'package:flutter_application_1/init_screen.dart';
 import 'package:flutter_application_1/view/authentication/login_success/login_success_screen.dart';
 import 'package:flutter_application_1/view/authentication/mobile_otp.dart';
 import 'package:flutter_application_1/viewmodel/authcontroller.dart';
+import 'package:flutter_application_1/viewmodel/cartprovider.dart';
 import 'package:get/get.dart';
 
 import '../../../components/socal_card.dart';
@@ -26,7 +27,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign Up"),
+        title: Text(
+          "Sign Up",
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
       ),
       body: SafeArea(
         child: SizedBox(
@@ -37,11 +41,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height / 50),
-                  const Text("Register Account", style: headingStyle),
-                  const Text(
-                    "Complete your details or continue \nwith social media",
-                    textAlign: TextAlign.center,
-                  ),
+                  const Text("Create New Account", style: headingStyle),
+                  // const Text(
+                  //   "Complete your details or continue \nwith social media",
+                  //   textAlign: TextAlign.center,
+                  // ),
                   SizedBox(height: MediaQuery.of(context).size.height / 50),
                   const SignUpForm(),
                   SizedBox(height: MediaQuery.of(context).size.height / 50),
@@ -54,6 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           UserCredential userCredential =
                               await getx.signInWithGoogle();
                           if (userCredential != true) {
+                            createFieldinFirebase();
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
@@ -74,11 +79,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 50),
-                  Text(
-                    'By continuing your confirm that you agree \nwith our Term and Condition',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  )
+                  // Text(
+                  //   'By continuing your confirm that you agree \nwith our Term and Condition',
+                  //   textAlign: TextAlign.center,
+                  //   style: Theme.of(context).textTheme.bodySmall,
+                  // )
                 ],
               ),
             ),

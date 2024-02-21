@@ -27,11 +27,15 @@ class HomeHeader extends StatelessWidget {
             const Expanded(child: SearchContainer()),
             SizedBox(width: MediaQuery.of(context).size.width / 25), //16
             IconBtnWithCounter(
-              svgSrc: "assets/icons/Cart Icon.svg",
-              //  numOfitem: 1 //numOfItems.toString(),
+                svgSrc: "assets/icons/Cart Icon.svg",
+                //  numOfitem: 1 //numOfItems.toString(),
 
-              press: () => Navigator.pushNamed(context, CartScreen.routeName),
-            ),
+                press: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CartScreen(),
+                      ),
+                    )),
 
             /// SizedBox(width: MediaQuery.of(context).size.width / 60),
           ],

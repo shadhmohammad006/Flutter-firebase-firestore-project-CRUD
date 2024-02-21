@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfilePic extends StatelessWidget {
-   ProfilePic({
+  ProfilePic({
     Key? key,
   }) : super(key: key);
   User? user = FirebaseAuth.instance.currentUser;
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +17,21 @@ class ProfilePic extends StatelessWidget {
         fit: StackFit.expand,
         clipBehavior: Clip.none,
         children: [
-           CircleAvatar(child: user?.photoURL != null ? ClipOval(
-                          child: Image.network(
-                            user!.photoURL!,
-                            fit: BoxFit.fill,
-                            width: 100,
-                            height: 100,
-                          ),
-                        )
-                      : Icon(
-                          Icons.person,
-                          size: 70,
-                        ),
-           // backgroundImage: AssetImage("assets/images/Profile Image.png"),
+          CircleAvatar(
+            child: user?.photoURL != null
+                ? ClipOval(
+                    child: Image.network(
+                      user!.photoURL!,
+                      fit: BoxFit.cover,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                    ),
+                  )
+                : Icon(
+                    Icons.person,
+                    size: 70,
+                  ),
+            // backgroundImage: AssetImage("assets/images/Profile Image.png"),
           ),
           Positioned(
             right: -16,

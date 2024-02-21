@@ -42,20 +42,22 @@ class CartProvider extends ChangeNotifier {
     final users = await total.get();
 
     if (!users.exists) {
-      total.set({'cartList': [],  });
+      total.set({
+        'cartList': [],
+      });
     }
     final data = {
       'cartList': FieldValue.arrayUnion([
         {
-            'thumbnail': product?.thumbnail,
+          'thumbnail': product?.thumbnail,
           'price': product?.price,
           'discription': product?.description,
           'discountPercentage': product?.discountPercentage,
-          'rating':product?.rating,
+          'rating': product?.rating,
           'stock': product?.stock,
           'title': product?.title,
           'brand': product?.brand,
-          'id':product?.id,
+          'id': product?.id,
         }
       ]),
     };
@@ -79,8 +81,8 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
   ////////////////////////////////////////////////////////////////////////
-   
-    addtoWishList(Product? product) async {
+
+  addtoWishList(Product? product) async {
     final total = FirebaseFirestore.instance
         .collection('cart')
         .doc(FirebaseAuth.instance.currentUser?.uid);
@@ -94,56 +96,51 @@ class CartProvider extends ChangeNotifier {
     final data = {
       'wishList': FieldValue.arrayUnion([
         {
-          'id': product?.id,
-          'category': product?.category,
           'thumbnail': product?.thumbnail,
-          'title': product?.title,
           'price': product?.price,
-          'rating': product?.rating,
-          'discountPercentage': product?.discountPercentage,
+          'title': product?.title,
+          'id': product?.id,
         }
       ]),
     };
 
     final newdata = await cart.get();
-    final List cartList = newdata.data()?['cartList'];
+    final List cartList = newdata.data()?['wishList'];
     bool productAlreadyInCart =
         cartList.any((item) => item['id'] == product?.id);
 
     if (!productAlreadyInCart) {
       cart.update(data);
 
-      showToast("Fav Product added");
+      print("item added in cart");
+
+      showToast("Product added");
     } else {
-      showToast('Fav Product already in Cart');
+      showToast('Product already in Cart');
     }
 
     notifyListeners();
   }
+
 ///////////////////////////////////////////////////////////////////////////////////////
-   bool colourBlink =false;
+   bool? colourBlink;
   wishListColor(Product? product) async {
     final newdata = await cart.get();
-    final List cartList = newdata.data()?['cartList'];
+    final List wishList = newdata.data()?['wishList'];
     bool productAlreadyInCart =
-        cartList.any((item) => item['id'] == product?.id);
+        wishList.any((item) => item['id'] == product?.id);
 
     if (!productAlreadyInCart) {
+      cart.update(
+        {'colorBlink': false},
+      );
       colourBlink = false;
-      showToast("Product added");
     } else {
       colourBlink = true;
-      showToast('Product already in Cart');
+      // showToast('Product already in Cart');
+      print("alredy added color in wishlist");
     }
-  }
-////////////////////////////////////////////////////////////////////////////////////////
-  wishlistDelete(Product? product) async {
-    final cartGet = await cart.get();
-    final wishlist = cartGet.data()?['wishList'];
-    int index = wishlist.indexWhere((item) => item['id'] == product?.id);
-    wishlist.removeAt(index);
-    cart.update({'wishList': wishlist});
-    print('Product removed from wishlist');
+    notifyListeners();
   }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -154,11 +151,7 @@ class CartProvider extends ChangeNotifier {
         await FirebaseFirestore.instance.collection('cart').doc(userId).get();
     List<dynamic> deleteList = docRef.get('wishList');
 
-   
-   
     deleteList.removeAt(index);
-
-    
 
     try {
       // Delete the 'cart' field from the document
@@ -171,10 +164,10 @@ class CartProvider extends ChangeNotifier {
       print('Error deleting field: $e');
     }
     notifyListeners();
-    
   }
+
 /////////////////////////////////////////////////////////////////
- void deleteFieldFromDocument(index) async {
+  void deleteFieldFromDocument(index) async {
     String userId = FirebaseAuth.instance.currentUser?.uid ?? "";
     final docRef =
         await FirebaseFirestore.instance.collection('cart').doc(userId).get();
@@ -183,10 +176,7 @@ class CartProvider extends ChangeNotifier {
     int productPrice = deleteList[index]['price'];
     totalPrice = totalPrice - productPrice;
 
-   
     deleteList.removeAt(index);
-
-    
 
     try {
       // Delete the 'cart' field from the document
@@ -199,10 +189,10 @@ class CartProvider extends ChangeNotifier {
       print('Error deleting field: $e');
     }
     notifyListeners();
-    
   }
+
   ////////////////////////////////////////////////////////////
-   void placeOrder(context) async {
+  void placeOrder(context) async {
     // Move items from cart to orders in Firestore
     List<Map<String, dynamic>> orderedItemsList = [];
     totalPrice = 0;
@@ -231,6 +221,7 @@ class CartProvider extends ChangeNotifier {
     // );
     notifyListeners();
   }
+
 /////////////////////////////////////////////////////////////////////////////////
   placeOrderFromProductPage(Product product) async {
     List<Map<String, dynamic>> orderedItemsList = [];
@@ -243,5 +234,30 @@ class CartProvider extends ChangeNotifier {
     await cart.update({
       'orderList': FieldValue.arrayUnion(orderedItemsList),
     });
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////
+Future<void> createFieldinFirebase() async {
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  if (auth.currentUser != null) {
+    String userId = auth.currentUser!.uid;
+    final users = FirebaseFirestore.instance.collection('cart').doc(userId);
+
+    final userssnap = await users.get();
+
+    if (!userssnap.exists) {
+      await users.set({
+        'cartList': [],
+        // 'total': 0,
+        'Productid': [],
+        'wishList': [],
+        'orderList': [],
+        'Address': []
+
+        // Add more fields as needed
+      });
+    }
   }
 }

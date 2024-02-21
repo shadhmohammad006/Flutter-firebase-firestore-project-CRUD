@@ -5,11 +5,20 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Notification"),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Text(
+                "Notification",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+          ],
+        ),
       ),
-      body: Center(child: Text("Notification")),
     );
   }
 }

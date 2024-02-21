@@ -49,13 +49,15 @@ class _ProductCardState extends State<ProductCard> {
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              widget.product.title,
-              style: Theme.of(context).textTheme.bodyMedium,
-              maxLines: 2,
+            Center(
+              child: Text(
+                widget.product.title,
+                style: Theme.of(context).textTheme.bodyMedium,
+                maxLines: 2,
+              ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   '\$${widget.product.price}',
@@ -65,43 +67,43 @@ class _ProductCardState extends State<ProductCard> {
                     color: kPrimaryColor,
                   ),
                 ),
-                InkWell(
-                  borderRadius: BorderRadius.circular(50),
-                  onTap: () {
-                    setState(() {
-                      providerObj.colourBlink = !providerObj.colourBlink;
-                      if (providerObj.colourBlink) {
-                        providerObj.addtoWishList(widget.product);
-                      } else {
-                        providerObj.wishlistDelete(widget.product);
-                      }
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(6),
-                    height: 24,
-                    width: 24,
-                    decoration: BoxDecoration(
-                      color: widget.product.isClick
-                          ? kPrimaryColor.withOpacity(0.15)
-                          : kSecondaryColor.withOpacity(0.1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: SvgPicture.asset(
-                      "assets/icons/Heart Icon_2.svg",
-                      //  colorFilter: ColorFilter.mode(
-                      // proProvider.products.isFavourite
-                      //   ?
-                      //   const Color(0xFFFF4848)
-                      //  : const Color(0xFFDBDEE4),
-                      //BlendMode.srcIn
-                      //  )
-                      color: widget.product.isClick
-                          ? const Color(0xFFFF4848)
-                          : const Color(0xFFDBDEE4),
-                    ),
-                  ),
-                ),
+                // InkWell(
+                //   borderRadius: BorderRadius.circular(50),
+                //   onTap: () {
+                //     setState(() {
+                //       providerObj.colourBlink = !providerObj.colourBlink;
+                //       if (providerObj.colourBlink) {
+                //         providerObj.addtoWishList(widget.product);
+                //       } else {
+                //         providerObj.wishlistDelete(widget.product);
+                //       }
+                //     });
+                //   },
+                //   child: Container(
+                //     padding: const EdgeInsets.all(6),
+                //     height: 24,
+                //     width: 24,
+                //     decoration: BoxDecoration(
+                //       color: widget.product.isClick
+                //           ? kPrimaryColor.withOpacity(0.15)
+                //           : kSecondaryColor.withOpacity(0.1),
+                //       shape: BoxShape.circle,
+                //     ),
+                //     child: SvgPicture.asset(
+                //       "assets/icons/Heart Icon_2.svg",
+                //       //  colorFilter: ColorFilter.mode(
+                //       // proProvider.products.isFavourite
+                //       //   ?
+                //       //   const Color(0xFFFF4848)
+                //       //  : const Color(0xFFDBDEE4),
+                //       //BlendMode.srcIn
+                //       //  )
+                //       color: widget.product.isClick
+                //           ? const Color(0xFFFF4848)
+                //           : const Color(0xFFDBDEE4),
+                //     ),
+                //   ),
+                // ),
               ],
             )
           ],

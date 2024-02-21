@@ -24,13 +24,14 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile"),
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
+            Text(
+              "Profile",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             // Padding(
             //   padding: const EdgeInsets.all(8.0),
             //   child: Container(
@@ -99,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
             //   ),
             // ),
             ProfilePic(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             ProfileMenu(
               text: "My Orders",
               icon: "assets/icons/User Icon.svg",

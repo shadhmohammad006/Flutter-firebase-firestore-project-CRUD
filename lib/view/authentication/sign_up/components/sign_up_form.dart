@@ -155,7 +155,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   ? CircularProgressIndicator(
                       color: Colors.white,
                     )
-                  : Text("Continue")),
+                  : Text("Signup")),
         ],
       ),
     );

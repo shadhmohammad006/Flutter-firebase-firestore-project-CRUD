@@ -6,6 +6,7 @@ import 'package:flutter_application_1/init_screen.dart';
 import 'package:flutter_application_1/view/authentication/login_success/login_success_screen.dart';
 import 'package:flutter_application_1/view/authentication/sign_in/sign_in_screen.dart';
 import 'package:flutter_application_1/view/products/products_screen.dart';
+import 'package:flutter_application_1/viewmodel/cartprovider.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -145,6 +146,7 @@ class AuthController extends GetxController {
 
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
+   
   }
 
   // signout

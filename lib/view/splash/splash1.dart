@@ -17,7 +17,9 @@ class Splash1 extends StatelessWidget {
           context,
           auth.currentUser?.uid != null
               ? MaterialPageRoute(builder: (context) => InitScreen())
-              : MaterialPageRoute(builder: (context) => WelcomeScreen()));
+              : MaterialPageRoute(builder: (context) => WelcomeScreen()),
+              
+              );
     });
     return Scaffold(
       body: Center(

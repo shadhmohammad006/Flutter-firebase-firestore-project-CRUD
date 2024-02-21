@@ -38,7 +38,8 @@ class PopularBrands extends StatelessWidget {
             child: SectionTitle(
               title: "Popular Brands",
               press: () {
-                Navigator.pushNamed(context, ProductsScreen.routeName);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProductsScreen()));
               },
             ),
           ),

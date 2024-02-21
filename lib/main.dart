@@ -35,13 +35,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ApiCallProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) =>SearchProvider()),
-       ChangeNotifierProvider(create: (_)=>WishListProvider())
+      // ChangeNotifierProvider(create: (_)=>WishListProvider())
       ],
       child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          theme:AppTheme.lightTheme(context), 
-          initialRoute: Splash1.routeName,
-      routes: routes,
+          theme:AppTheme.lightTheme(context),
+          home: Splash1(), 
+      //     initialRoute: Splash1.routeName,
+      // routes: routes,
           // FutureBuilder(
           //     future: initializeApp(),
           //     builder: (context, snapshot) {
@@ -61,3 +62,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+/////////////////////////21-02-2024//////////////////////////

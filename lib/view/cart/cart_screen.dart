@@ -17,7 +17,7 @@ import 'components/check_out_card.dart';
 // Other imports...
 
 class CartScreen extends StatefulWidget {
-  static String routeName = "/cart";
+  //static String routeName = "/cart";
   const CartScreen({Key? key}) : super(key: key);
 
   @override
@@ -56,17 +56,9 @@ class _CartScreenState extends State<CartScreen> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          children: [
-            const Text(
-              "Your Cart",
-              style: TextStyle(color: Colors.black),
-            ),
-            // Text(
-            //   "items",
-            //   style: Theme.of(context).textTheme.bodySmall,
-            // ),
-          ],
+        title: Text(
+          "Cart",
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: StreamBuilder(

@@ -15,7 +15,7 @@ class MobileOtp extends StatefulWidget {
 
 FirebaseAuth auth = FirebaseAuth.instance;
 final _formKey = GlobalKey<FormState>();
-
+final getx = Get.put(AuthController());
 final otpController = TextEditingController();
 
 class _MobileOtpState extends State<MobileOtp> {
@@ -43,6 +43,10 @@ class _MobileOtpState extends State<MobileOtp> {
     final Getx = Get.put(AuthController());
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Mobile Otp",
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         backgroundColor: Colors.transparent,
       ),
       body: Form(
@@ -106,34 +110,54 @@ class _MobileOtpState extends State<MobileOtp> {
             SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
-                width: 365,
-                height: 55,
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(Colors.teal),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                        )),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        _formKey.currentState!.save();
-                        // if all are valid then go to success screen
-                        KeyboardUtil.hideKeyboard(context);
-                        Getx.verifyUserPhoneNumber();
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => OTP_Page()),
-                        );
-                      }
-                    },
-                    child: Text(
-                      "Send OTP",
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
-                    )),
-              ),
+              // child: Container(
+              //   width: 365,
+              //   height: 55,
+              //    child:
+              // ElevatedButton(
+              //     style: ButtonStyle(
+              //         backgroundColor: MaterialStatePropertyAll(Colors.teal),
+              //         shape: MaterialStateProperty.all(
+              //           RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(10)),
+              //         )),
+              //     onPressed: () async {
+              //       if (_formKey.currentState!.validate()) {
+              //         _formKey.currentState!.save();
+              //         // if all are valid then go to success screen
+              //         KeyboardUtil.hideKeyboard(context);
+              //         Getx.verifyUserPhoneNumber();
+              //         Navigator.of(context).pushReplacement(
+              //           MaterialPageRoute(builder: (context) => OTP_Page()),
+              //         );
+              //       }
+              //     },
+              //     child: Text(
+              //       "Send OTP",
+              //       style: TextStyle(
+              //         fontSize: 17,
+              //       ),
+              //     )),
+              // ),
+              child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      // if all are valid then go to success screen
+                      KeyboardUtil.hideKeyboard(context);
+
+                      // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                      // Navigator.pushReplacement(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => LoginSuccessScreen()));
+                    }
+                  },
+                  child: getx.loading.value
+                      ? CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text("Sent Otp")),
             ),
           ],
         ),
